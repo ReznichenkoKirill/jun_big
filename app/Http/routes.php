@@ -28,5 +28,3 @@ Route::group(['prefix'=>'tasks'],function (){
 });
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index');
