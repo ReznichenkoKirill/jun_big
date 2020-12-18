@@ -18,9 +18,9 @@ class CreateTasksTable extends Migration
             $table->integer('user_id')
                     ->unsigned()
                     ->index();
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users');
+            $table->foreign('user_id')  // внешний ключ
+                    ->references('id')          // ограничение внешнего ключа
+                    ->on('users');              // в таблице Users
             $table->timestamps();
         });
     }
