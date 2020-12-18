@@ -1,8 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
+
+	@include('common.errors')
 	<!-- Форма новой задачи -->
-	<form action="{{ route('tasks.create') }}" method="POST" class="form-horizontal">
+	<form action="{{ route('tasks.add') }}" method="POST" class="form-horizontal">
 	{{ csrf_field() }}
 		<div class="form-group">
 			<label for="task" class="col-sm-3 control-label">Задача</label>
