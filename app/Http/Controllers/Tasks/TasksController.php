@@ -11,9 +11,14 @@
         {
             $this->middleware('auth'); // посредник
         }
-        public function index()
+        public function index(Request $request)
         {
-            return view('tasks.index');
+            $user = $request->user();   // выбирает павторизированного узера
+            $tasks = $user->tasks;      // выборка tasks именно этого юзера
+            
+            return view('tasks.index',
+                        ['tasks'=>$tasks,]
+            );
         }
         public function create()
         {
