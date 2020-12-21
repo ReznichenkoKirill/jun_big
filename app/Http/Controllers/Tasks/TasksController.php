@@ -47,7 +47,9 @@
         }
         
         public function delete(Task $task) {
+            $this->authorize('destroy',$task);  // вызов политики
             $task->delete();
             return redirect(route('tasks.index'));
         }
+        
     }
