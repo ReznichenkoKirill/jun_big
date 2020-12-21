@@ -109,5 +109,19 @@ return [
     */
 
     'attributes' => [],
+        'index_menu' => 'Menu',
+        'index_home' => 'Home',
+        'tasks_newTask' => 'New task',
+        'tasks_delete' => 'Delete',
+        'tasks_name' => 'Name',
+        'tasks_ection' => 'Action',
+        'tasks_tasks' => 'Tasks',
+        'tasks_one' => 'Task',
+        'tasks_newTasks' => 'New Task',
+        'tasks_addTask' => 'Add task',
+        'auth_login' => 'Login',
+        'auth_registration' => 'Registration',
+        'auth_email' => 'Email',
+        'auth_password' => 'Password',
 
 ];

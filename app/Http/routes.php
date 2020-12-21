@@ -14,14 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix'=>'tasks'],function (){
-   Route::get('/', 'Tasks\TasksController@index')
+Route::group(['prefix'=>'tasks','namespace'=>'Tasks',],function (){
+   Route::get('/', 'TasksController@index')
            ->name('tasks.index'); // это вызовет TasksController action index
+    // 'Tasks\TasksController@index'
     
-    Route::get('/create', 'Tasks\TasksController@create')
+    Route::get('/create', 'TasksController@create')
             ->name('tasks.create');
     
-    Route::post('/', 'Tasks\TasksController@add')
+    Route::post('/', 'TasksController@add')
             ->name('tasks.add');
     
     Route::delete('/{task}', 'Tasks\TasksController@delete')->name('tasks.delete');

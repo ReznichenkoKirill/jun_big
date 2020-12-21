@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Task' => 'App\Models\Policies\TaskPolicy',
     ];
     // Привязка политики к моделе
+    // 
 
     /**
      * Register any application authentication / authorization services.
