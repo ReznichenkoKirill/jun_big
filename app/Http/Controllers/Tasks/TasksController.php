@@ -3,8 +3,10 @@
     use App\Models\Task;
     use Illuminate\Http\Request;
     use App\Http\Requests;
-    use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Auth;
+    use App\Http\Controllers\Controller;
+
     class TasksController extends Controller
     {
         public function __construct()
@@ -15,14 +17,16 @@
         {
             $user = $request->user();   // выбирает павторизированного узера
             $tasks = $user->tasks;      // выборка tasks именно этого юзера
-            
+
+//            dd($this->getLanguages());
+
             return view('tasks.index',
-                        ['tasks'=>$tasks,]
+                        ['tasks'=>$tasks, 'languages'=>$this->getLanguages(), 'currentLanguages'=>$this->getCurrentLanguage(),]
             );
         }
         public function create()
         {
-            return view('tasks.create');
+            return view('tasks.create', ['languages'=>$this->getLanguages(),'currentLanguages'=>$this->getCurrentLanguage()]);
         }
         public function add(Request $request)
         {
@@ -49,5 +53,25 @@
         public function delete(Task $task) {
             $task->delete();
             return redirect(route('tasks.index'));
+        }
+
+        public function choiseLanguage($lang) {
+            App::setLocale($lang);
+            return redirect(route('tasks.index'));
+        }
+
+        public function getCurrentLanguage() {
+            return App::getLocale();
+        }
+
+        private function getLanguages() {
+            $dir = '../resources/lang';
+            $languages = scandir($dir);
+            foreach ($languages as $lang) {
+                if(stristr($lang, '.')){
+                    array_shift($languages);
+                }
+            }
+            return $languages;
         }
     }
